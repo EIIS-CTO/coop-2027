@@ -297,6 +297,7 @@
   function closeModal(silent){
     const el = root.querySelector('.mback'); if (!el) return;
     const cb = el._onClose; el.remove();
+    document.querySelectorAll('body > .item.drag').forEach(n => n.remove());
     if (!silent && cb) cb();
     if (!silent) afterClose();
   }

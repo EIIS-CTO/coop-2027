@@ -242,11 +242,32 @@
           G.complete('cestino', { meters:{ rifiuti:gain }, points:30, badge:{ t:'Il bidone giusto', ico:'recycle', col:'#7FA37A' },
             who:'Luca', say:'Lo scontrino nell\'indifferenziato? Anch\'io lo buttavo nella carta!' });
         };
+        const endDrag = (e, cancelled) => {
+          const d = drag; drag = null;
+          if (!d) return;
+          d.item.style.opacity = '';
+          if (d.clone) d.clone.remove();
+          $$(el, '.bin').forEach(b => b.classList.remove('over'));
+          if (cancelled) return;
+          if (d.clone){
+            const bin = document.elementFromPoint(e.clientX, e.clientY)?.closest('.bin');
+            if (bin) drop(d.item, bin);
+          } else {
+            $$(el, '.item').forEach(x => x.classList.toggle('sel', x === d.item && sel !== d.item));
+            sel = sel === d.item ? null : d.item;
+            $$(el, '.bin').forEach(b => b.classList.toggle('target', !!sel));
+          }
+        };
         $$(el, '.item').forEach(item => {
           item.addEventListener('pointerdown', e => {
+            if (e.button !== 0) return;
+            if (drag) endDrag(e, true);
             drag = { item, x:e.clientX, y:e.clientY, clone:null };
-            item.setPointerCapture(e.pointerId);
+            try { item.setPointerCapture(e.pointerId); } catch (_) {}
           });
+          item.addEventListener('pointerup', e => { if (drag && drag.item === item) endDrag(e, false); });
+          item.addEventListener('pointercancel', e => { if (drag && drag.item === item) endDrag(e, true); });
+          item.addEventListener('lostpointercapture', e => { if (drag && drag.item === item) endDrag(e, true); });
           item.addEventListener('pointermove', e => {
             if (!drag || drag.item !== item) return;
             if (!drag.clone && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 6){
@@ -261,19 +282,6 @@
               drag.clone.style.top = e.clientY - drag.clone.offsetHeight / 2 + 'px';
               const over = document.elementFromPoint(e.clientX, e.clientY)?.closest('.bin');
               $$(el, '.bin').forEach(b => b.classList.toggle('over', b === over));
-            }
-          });
-          item.addEventListener('pointerup', e => {
-            if (!drag || drag.item !== item) return;
-            const d = drag; drag = null;
-            if (d.clone){
-              d.clone.remove(); item.style.opacity = '';
-              const bin = document.elementFromPoint(e.clientX, e.clientY)?.closest('.bin');
-              if (bin) drop(item, bin); else $$(el, '.bin').forEach(b => b.classList.remove('over'));
-            } else {
-              $$(el, '.item').forEach(x => x.classList.toggle('sel', x === item && sel !== item));
-              sel = sel === item ? null : item;
-              $$(el, '.bin').forEach(b => b.classList.toggle('target', !!sel));
             }
           });
         });
