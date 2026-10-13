@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Sostenibile · Proposta 2027</title>
+<meta name="description" content="Proposta 2027 Coop × EIIS: un videogioco educativo online di ecologia domestica, con demo giocabile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/page.css">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-logos">
+      <img src="imgs/logo_coop.png" alt="Coop">
+      <span class="nav-sep"></span>
+      <img src="imgs/logo_eiis.png" alt="EIIS">
+    </div>
+    <div class="nav-links">
+      <a href="#idea">L'idea</a>
+      <a href="#come">Come si gioca</a>
+      <a href="#moduli">Moduli</a>
+      <a href="#gamification">Gamification</a>
+      <a href="#demo" class="nav-cta">Gioca la demo</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-copy reveal">
+      <div class="kicker"><span class="dot"></span>Proposta 2027 · Coop × EIIS</div>
+      <h1>Casa <em>Sostenibile</em></h1>
+      <p class="hero-sub">Il videogioco educativo di ecologia domestica per i Soci Coop. Crei il tuo personaggio, entri in casa e la fai crescere stanza dopo stanza, imparando i gesti che fanno bene al pianeta e al portafoglio.</p>
+      <div class="hero-ctas">
+        <a href="#demo" class="btn btn-red">Gioca la demo</a>
+        <a href="#idea" class="btn btn-ghost">Scopri l'idea</a>
+      </div>
+      <div class="hero-facts">
+        <div><b>Online</b><span>niente da installare</span></div>
+        <div><b>Punta e clicca</b><span>per tutte le età</span></div>
+        <div><b>6 stanze</b><span>6 temi di ecologia</span></div>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <svg id="heroHouse" viewBox="0 0 640 520" role="img" aria-label="La casa del gioco che si allarga stanza dopo stanza"></svg>
+      <div class="hero-caption">La casa si allarga man mano che impari</div>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="idea">
+  <div class="sec-in">
+    <div class="label">L'idea in breve</div>
+    <h2>Un gioco di vita domestica,<br>dove ogni oggetto insegna qualcosa.</h2>
+    <p class="lead">Lo stile è quello delle simulazioni di vita: una casa vista dall'alto, con i muri tagliati e le stanze come piccoli diorami. Non serve saper giocare: si clicca su ciò che brilla e si scopre un gesto concreto da portare nella vita reale.</p>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="p-ico" data-ico="home"></div>
+        <h3>Gioca</h3>
+        <p>Crei il tuo personaggio in 30 secondi ed esplori la casa. Ogni stanza ha oggetti cliccabili e piccole sfide.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="p-ico" data-ico="tv"></div>
+        <h3>Impara</h3>
+        <p>La TV del salotto trasmette le video lezioni. La libreria raccoglie dispense e guide in PDF da consultare quando vuoi.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="p-ico" data-ico="leaf"></div>
+        <h3>Cambia</h3>
+        <p>Ogni gesto migliora l'impronta della casa. Le missioni chiedono di portare quei gesti a casa propria, quella vera.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-warm" id="come">
+  <div class="sec-in">
+    <div class="label">Come si gioca</div>
+    <h2>Un ciclo semplice, che si ripete in ogni stanza.</h2>
+    <ol class="loop">
+      <li class="reveal"><span class="n">1</span><h4>Crea il personaggio</h4><p>Pochi tocchi: aspetto, capelli, vestiti, nome.</p></li>
+      <li class="reveal"><span class="n">2</span><h4>Esplora la stanza</h4><p>Gli oggetti che brillano nascondono una sfida.</p></li>
+      <li class="reveal"><span class="n">3</span><h4>Impara e gioca</h4><p>Video lezione, dispensa o mini-gioco di 1-2 minuti.</p></li>
+      <li class="reveal"><span class="n">4</span><h4>Migliora la casa</h4><p>Salgono le barre di Energia, Acqua, Rifiuti e Spesa.</p></li>
+      <li class="reveal"><span class="n">5</span><h4>Sblocca la stanza dopo</h4><p>Il personaggio apre la porta e la casa si allarga.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="casa">
+  <div class="sec-in">
+    <div class="label">Una casa che cresce</div>
+    <h2>Si parte dal salotto.<br>Si arriva fino all'orto.</h2>
+    <p class="lead">Ogni stanza corrisponde a un tema di ecologia domestica e a un modulo del percorso. Si sblocca completando le sfide di quella precedente.</p>
+    <div class="rooms" id="roomList"></div>
+  </div>
+</section>
+
+<section class="sec sec-warm" id="moduli">
+  <div class="sec-in">
+    <div class="label">Esempi di moduli</div>
+    <h2>Lezioni brevi, mini-giochi veri.</h2>
+    <p class="lead">Alcuni esempi di come un tema diventa un'attività giocabile. Ogni modulo unisce una video lezione, una dispensa e almeno un mini-gioco.</p>
+    <div class="mods" id="modList"></div>
+  </div>
+</section>
+
+<section class="sec" id="gamification">
+  <div class="sec-in">
+    <div class="label">Gamification</div>
+    <h2>Motivare senza mettere ansia.</h2>
+    <p class="lead">Niente classifiche individuali né timer punitivi. La progressione premia la costanza e collega il gioco ai gesti di tutti i giorni.</p>
+    <div class="gami" id="gamiList"></div>
+  </div>
+</section>
+
+<section class="sec sec-warm" id="personaggi">
+  <div class="sec-in">
+    <div class="label">I vicini di casa</div>
+    <h2>Maria, Paola, Luca e Roberto<br>tornano come guide.</h2>
+    <p class="lead">I protagonisti di "AI per la vita quotidiana" diventano i vicini di casa del giocatore. Scrivono messaggi sul telefono del gioco, danno consigli e accompagnano le stanze del loro tema.</p>
+    <div class="people" id="peopleList"></div>
+  </div>
+</section>
+
+<section class="sec" id="coop">
+  <div class="sec-in two">
+    <div>
+      <div class="label">Coop dentro il gioco</div>
+      <h2>La spesa vera entra in casa.</h2>
+      <ul class="ticks">
+        <li><b>Dispensa con prodotti Coop.</b> Schede reali dei prodotti, per esempio la linea Vivi Verde, nel mini-gioco della spesa.</li>
+        <li><b>Il punto vendita del quartiere.</b> Una "stanza esterna" dove fare la spesa con budget e impronta ambientale.</li>
+        <li><b>Premi nel mondo reale.</b> Ipotesi da valutare insieme: vantaggi per i Soci che completano i percorsi.</li>
+        <li><b>Contenuti certificati.</b> Video lezioni e dispense scritte con EIIS.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="label">Due pubblici</div>
+      <h2>Prima i Soci, poi i dipendenti.</h2>
+      <div class="aud">
+        <div class="aud-card">
+          <span class="tag">2027</span>
+          <h4>Soci Coop</h4>
+          <p>La casa e le sue stanze: energia, acqua, rifiuti, spesa, stagionalità.</p>
+        </div>
+        <div class="aud-card">
+          <span class="tag tag-2">Fase 2</span>
+          <h4>Dipendenti Coop</h4>
+          <p>Stesso motore, nuovi ambienti: punto vendita, magazzino, ufficio. Missioni sulla sostenibilità al lavoro.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-warm" id="tech">
+  <div class="sec-in">
+    <div class="label">Tecnologia</div>
+    <h2>Un sito web, pensato per tutti.</h2>
+    <div class="tech" id="techList"></div>
+  </div>
+</section>
+
+<section class="sec sec-dark" id="demo">
+  <div class="sec-in">
+    <div class="label label-light">Demo giocabile</div>
+    <h2>Prova il salotto e la cucina.</h2>
+    <p class="lead lead-light">Una versione ridotta per toccare con mano il concept: crea il personaggio, completa le sfide del salotto e sblocca la cucina. Circa 5 minuti.</p>
+    <div class="game-frame">
+      <div id="game" class="game"></div>
+      <div class="rotate-hint">Ruota il telefono in orizzontale per giocare</div>
+    </div>
+    <p class="demo-note">Demo di concept: grafica, testi e dati sono indicativi e da validare con Coop ed EIIS.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div class="nav-logos">
+      <img src="imgs/logo_coop.png" alt="Coop">
+      <span class="nav-sep"></span>
+      <img src="imgs/logo_eiis.png" alt="EIIS">
+    </div>
+    <p>Casa Sostenibile · Proposta 2027 · Bozza di concept per la discussione</p>
+  </div>
+</footer>
+
+<script src="js/iso.js"></script>
+<script src="js/page.js"></script>
+<script src="js/rooms.js"></script>
+<script src="js/minigames.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
