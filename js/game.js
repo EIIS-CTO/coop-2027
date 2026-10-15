@@ -1,10 +1,9 @@
 (function(){
-  const { avatar, icon, SKIN, HAIRC, OUTFIT, HAIRS } = window.CL;
+  const { avatar, icon, portrait, SKIN, HAIRC, OUTFIT, HAIRS } = window.CL;
   const R = window.CLRooms;
   const root = document.getElementById('game');
   if (!root) return;
 
-  const PEOPLE = { Maria:'imgs/maria.jpg', Paola:'imgs/paola.jpg', Luca:'imgs/luca.jpg', Roberto:'imgs/roberto.jpg' };
   const METERS = [
     { k:'energia', name:'Energia', ico:'bolt', col:'#E9B44C' },
     { k:'acqua', name:'Acqua', ico:'drop', col:'#5F9BBE' },
@@ -42,7 +41,7 @@
     root.innerHTML = '';
     root.append(h(`<div class="start"><div>
       <h3>Casa Sostenibile</h3>
-      <p>Demo di concept · circa 5 minuti</p>
+      <p>Demo · circa 5 minuti</p>
       <button class="gbtn" id="gStart">${icon('play')} Inizia</button></div></div>`));
     root.querySelector('#gStart').onclick = creator;
   }
@@ -266,7 +265,7 @@
   function msg(who, text){
     const box = root.querySelector('#hMsgs'); if (!box) return;
     while (box.children.length >= 2) box.firstElementChild.remove();
-    const el = h(`<div class="msg"><img src="${PEOPLE[who]}" alt="${who}"><div><b>${who}</b><p>${text}</p></div></div>`);
+    const el = h(`<div class="msg">${portrait(who)}<div><b>${who}</b><p>${text}</p></div></div>`);
     const kill = () => { el.classList.add('out'); setTimeout(() => el.remove(), 350); };
     el.onclick = kill;
     box.append(el);
@@ -353,8 +352,8 @@
           <span>${icon('drop')} Bagno · Acqua</span><span>${icon('recycle')} Balcone · Rifiuti</span>
           <span>${icon('washer')} Lavanderia · Elettrodomestici</span><span>${icon('sprout')} Orto · Stagioni</span></div>
         <div class="badges-row">${S.badges.map(b => `<div style="background:${b.col}" title="${b.t}">${icon(b.ico, 2.4)}</div>`).join('')}</div>
-        <p class="small-note">I punteggi della demo sono indicativi.</p></div>`,
-      foot:`<button class="gbtn sec" id="fAgain">Rigioca</button><button class="gbtn" id="fBack">Torna alla proposta</button>`,
+        </div>`,
+      foot:`<button class="gbtn sec" id="fAgain">Rigioca</button><button class="gbtn" id="fBack">Scopri i moduli</button>`,
       onMount: el => {
         el.querySelector('#fAgain').onclick = () => { reset(); };
         el.querySelector('#fBack').onclick = () => { closeModal(true); document.getElementById('moduli').scrollIntoView({ behavior:'smooth' }); };
@@ -370,7 +369,7 @@
 
   function esc(s){ return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c])); }
 
-  const API = { S, modal, closeModal, complete, msg, toast, refresh, icon, esc, PEOPLE };
+  const API = { S, modal, closeModal, complete, msg, toast, refresh, icon, esc, face: portrait };
   window.CLGame = API;
   startScreen();
 })();

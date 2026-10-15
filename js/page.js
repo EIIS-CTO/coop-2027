@@ -1,5 +1,5 @@
 (function(){
-  const { makeIso, icon, avatar } = window.CL;
+  const { makeIso, icon, avatar, PERSONAS } = window.CL;
   const $ = s => document.querySelector(s);
 
   const ROOMS = [
@@ -60,11 +60,18 @@
     { name:'Roberto', img:'roberto', role:'Energia e bollette', text:'Ha imparato a leggere le bollette e adesso le spiega a tutto il condominio.' }
   ];
 
+  const VALUE = [
+    { ico:'users', col:'#D9734E', t:'Coinvolge davvero', p:'Un gioco si apre per curiosità e si riprende con piacere. I Soci tornano per sbloccare la stanza successiva, non per dovere.' },
+    { ico:'target', col:'#7FA37A', t:'Cambia le abitudini', p:'Ogni modulo si chiude con una missione da fare a casa propria: spegnere gli stand-by, regolare il termostato, salvare gli avanzi.' },
+    { ico:'cart', col:'#E2001A', t:'Rafforza il marchio', p:'Coop è presente nella dispensa, nella spesa e nei premi: il gioco racconta i valori della cooperativa con i suoi prodotti.' },
+    { ico:'star', col:'#E9B44C', t:'Risultati visibili', p:'Iscritti, moduli completati e missioni svolte diventano numeri da raccontare nel bilancio di sostenibilità.' }
+  ];
+
   const TECH = [
-    { t:'Solo un browser', p:'Un sito web: nessuna app da installare, si entra con l\'account e si riprende da dove si era rimasti.' },
-    { t:'Grafica vettoriale', p:'La casa è disegnata in codice: nitida su qualsiasi schermo, facile da animare e da aggiornare.' },
-    { t:'Su Cloud Run', p:'Infrastruttura Google Cloud che si adatta automaticamente al numero di giocatori.' },
-    { t:'Per tutte le età', p:'Prima desktop, poi smartphone in orizzontale. Solo click, testi grandi, ritmo lento.' }
+    { t:'Nessuna installazione', p:'Si gioca dal browser. Si entra con il proprio account e si riprende da dove ci si era fermati.' },
+    { t:'Per tutte le età', p:'Solo click, testi grandi e nessun timer: pensato anche per chi non ha mai giocato a un videogioco.' },
+    { t:'Computer e smartphone', p:'Funziona da computer e da smartphone in orizzontale, a casa o in pausa pranzo.' },
+    { t:'Sempre aggiornato', p:'Nuove stanze, lezioni e sfide si aggiungono nel tempo senza che i Soci debbano fare nulla.' }
   ];
 
   document.querySelectorAll('.p-ico').forEach(el => el.innerHTML = icon(el.dataset.ico));
@@ -91,7 +98,7 @@
         <div class="mod-row"><b>Cosa impari</b><p>${m.learn}</p></div>
         <div class="mod-row"><b>Come si gioca</b><p>${m.play}</p></div>
         <div class="mod-row"><b>Ricompensa</b><p>${m.win}</p></div>
-        ${m.demo ? '<div class="mod-play">● Lo trovi nella demo qui sotto</div>' : ''}
+        ${m.demo ? '<div class="mod-play">● Giocabile nella demo</div>' : ''}
       </div>
     </article>`).join('');
 
@@ -117,8 +124,12 @@
     <div class="g-card reveal"><div class="g-vis">${VIS[g.vis]}</div><h4>${g.title}</h4><p>${g.text}</p></div>`).join('');
 
   $('#peopleList').innerHTML = PEOPLE.map(p => `
-    <div class="person reveal"><img src="imgs/${p.img}.jpg" alt="${p.name}" loading="lazy">
+    <div class="person reveal"><div class="p-art" style="background:${PERSONAS[p.name].bg}">
+      <svg viewBox="-48 -138 96 146" role="img" aria-label="${p.name}"><ellipse cx="0" cy="1" rx="32" ry="8" fill="rgba(255,255,255,.6)"/><g>${avatar(PERSONAS[p.name])}</g></svg></div>
       <div><h4>${p.name}</h4><div class="role">${p.role}</div><p>${p.text}</p></div></div>`).join('');
+
+  $('#valueList').innerHTML = VALUE.map(v => `
+    <div class="v-card reveal"><div class="room-ico" style="background:${v.col}">${icon(v.ico)}</div><h4>${v.t}</h4><p>${v.p}</p></div>`).join('');
 
   $('#techList').innerHTML = TECH.map(t => `<div class="t-card reveal"><b>${t.t}</b><p>${t.p}</p></div>`).join('');
 

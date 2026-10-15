@@ -107,7 +107,7 @@
 .msg.out{animation:msgOut .35s ease both}
 @keyframes msgIn{from{opacity:0;transform:translateY(1em) scale(.95)}}
 @keyframes msgOut{to{opacity:0;transform:translateX(2em)}}
-.msg img{width:2.9em;height:2.9em;border-radius:50%;object-fit:cover;object-position:50% 25%;flex:none}
+.msg .pf{width:2.9em;height:2.9em;border-radius:50%;flex:none}
 .msg b{font-family:var(--display);font-weight:600;font-size:1em;display:block}
 .msg p{font-size:.9em;line-height:1.4;color:var(--ink-2)}
 
@@ -210,7 +210,7 @@
 .food.right{border-color:var(--sage);background:#F1F7EE}
 .food.miss{border-color:var(--mustard);background:#FFF8E6}
 .recipe{display:flex;gap:1em;align-items:center;background:#FFF5EC;border-radius:1em;padding:1em;margin-top:.8em}
-.recipe img{width:4em;height:4em;border-radius:50%;object-fit:cover;object-position:50% 25%;flex:none}
+.recipe .pf{width:4em;height:4em;border-radius:50%;flex:none}
 .recipe b{font-family:var(--display);font-weight:600;font-size:1.1em;display:block}
 .recipe p{color:var(--ink-2);line-height:1.5;font-size:.95em}
 

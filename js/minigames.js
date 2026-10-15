@@ -25,7 +25,7 @@
           <div class="prog"><i id="vProg"></i></div>
         </div>
         <div class="chapters">${chap.map((c, i) => `<span data-c="${i}">${i + 1}. ${c}</span>`).join('')}</div>
-        <p class="small-note">Segnaposto: nel gioco completo qui va la video lezione EIIS (2-4 minuti).</p>
+        <p class="small-note">Nel gioco completo: video lezioni EIIS di 2-4 minuti.</p>
         <style>.vid .vh{stroke-dasharray:400;stroke-dashoffset:400}.vid.run .vh{animation:vdraw 2.5s ease forwards}
         @keyframes vdraw{to{stroke-dashoffset:0}}.vid .vp{opacity:0}.vid.run .vp{animation:vpop 1s ease infinite alternate}
         .vid.run .p2{animation-delay:.4s}.vid.run .p3{animation-delay:.8s}@keyframes vpop{from{opacity:.2}to{opacity:1}}</style>`,
@@ -83,7 +83,7 @@
         const open = i => {
           const d = DOCS[i];
           body.innerHTML = `<div class="paper"><h4>${d.t}</h4><ul>${d.pts.map(p => `<li>${p}</li>`).join('')}</ul></div>
-            <p class="small-note">Anteprima: nel gioco completo si apre e si scarica il PDF.</p>
+            <p class="small-note">Nel gioco completo la dispensa si apre e si scarica in PDF.</p>
             <div style="display:flex;justify-content:space-between;margin-top:.9em">
               <button class="gbtn sec" id="dBack">Altre dispense</button><button class="gbtn green" id="dRead">${G.icon('check')} Letta</button></div>`;
           body.querySelector('#dBack').onclick = () => { body.innerHTML = list(); bind(); };
@@ -330,7 +330,7 @@
           const withRice = picked.has(3);
           const dish = withRice ? `Riso saltato con ${list}` : `Frittata con ${list}`;
           const line = withRice ? 'Quindici minuti in padella e il riso di ieri torna come nuovo.' : 'Le uova tengono insieme tutto: dieci minuti e la cena è pronta.';
-          out.innerHTML = `<div class="recipe"><img src="${G.PEOPLE.Paola}" alt="Paola"><div><b>${dish}</b>
+          out.innerHTML = `<div class="recipe">${G.face('Paola')}<div><b>${dish}</b>
             <p>"${line} Non si butta niente!"</p></div></div>` +
             fact(G, '"Da consumarsi entro" è una data di sicurezza: dopo, il prodotto non va mangiato. "Da consumarsi preferibilmente entro" riguarda la qualità: se ben conservato, spesso il prodotto è buono anche dopo.');
           go.textContent = 'Fatto'; go.classList.add('green');
@@ -366,7 +366,7 @@
           box.innerHTML = `<div class="round">Scelta ${r + 1} di ${ROUNDS.length} · ${R.q}</div>
             <div class="pair">${['a', 'b'].map(k => `<button class="prod" data-k="${k}"><span class="pe">${R[k].e}</span><b>${R[k].n}</b><small>${R[k].s}</small></button>`).join('')}</div>
             <div id="pOut"></div>
-            <div class="coop-strip"><img src="imgs/logo_coop.png" alt="Coop">Nel gioco completo qui ci sono i prodotti Coop veri, per esempio la linea Vivi Verde, con le loro schede.</div>`;
+            <div class="coop-strip"><img src="imgs/logo_coop.png" alt="Coop">Nel gioco completo qui trovi i prodotti Coop, per esempio la linea Vivi Verde, con le loro schede.</div>`;
           $$(box, '.prod').forEach(b => b.onclick = () => {
             const right = b.dataset.k === R.ok;
             if (right) score++;
